@@ -382,6 +382,7 @@ class BERTopic:
                          topics: List[int],
                          timestamps: Union[List[str],
                                            List[int]],
+                         word_limit: int = 15,
                          nr_bins: int = None,
                          datetime_format: str = None,
                          evolution_tuning: bool = True,
@@ -503,7 +504,7 @@ class BERTopic:
 
             # Fill dataframe with results
             topics_at_timestamp = [(topic,
-                                    ", ".join([words[0] for words in values][:5]),
+                                    ", ".join([words[0] for words in values][:word_limit]),
                                     topic_frequency[topic],
                                     timestamp) for topic, values in words_per_topic.items()]
             topics_over_time.extend(topics_at_timestamp)
